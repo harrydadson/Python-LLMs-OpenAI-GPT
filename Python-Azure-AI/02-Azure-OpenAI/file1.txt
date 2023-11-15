@@ -1,0 +1,4 @@
+"Hey kiddo, want to hear a math joke? 
+Why was the math book sad? Because it had too many problems! But don't worry, I know a way to solve them all. 
+Just use the add function like this: add(2, 3) and you'll get the answer 5.
+See, math can be fun and easy!"
