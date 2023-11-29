@@ -1,0 +1,8 @@
+Large language models (LLM) are renowned for their ability to process long text sequences. 
+However, when dealing with lengthy articles, books, or prolonged chat sessions, these models often reach their context limit. 
+This poses a challenge when the need arises to extend the context of the model to even longer sequences. 
+Current solutions to this problem are either computationally demanding, memory-intensive, or imprecise. 
+A breakthrough solution is StreamingLLM, developed by a collaborative team of researchers from Meta AI, MIT, and Carnegie Mellon University.
+ This innovative technique can extend an LLM’s context to millions of tokens without the need for vast compute and memory resources, 
+ all while preserving the model’s high-quality performance. 
+ StreamingLLM is poised to be an invaluable tool for applications that require long-sequence text processing.
