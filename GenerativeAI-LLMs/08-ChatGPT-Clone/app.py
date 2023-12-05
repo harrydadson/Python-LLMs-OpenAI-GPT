@@ -12,10 +12,13 @@ import os
 import openai
 import dotenv
 
-dotenv.load_dotenv()
+dotenv.load_dotenv('.env')
+
 apikey = AzureOpenAI(
-    deployment_name=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
-)
+    azure_deployment=os.getenv("OPENAI_MODEL_NAME"),
+    azure_endpoint=f"https://{os.getenv('AZURE_OPENAI_SERVICE_NAME')}.openai.azure.com/",
+    temperature=0.7,
+    api_version="2023-05-15")
 
 if 'conversation' not in st.session_state:
     st.session_state['conversation'] =None
@@ -42,10 +45,10 @@ def getresponse(userInput, api_key):
     if st.session_state['conversation'] is None:
 
         llm = AzureOpenAI(
-            temperature=0,
-            openai_api_key=api_key,
-            model_name='text-davinci-003'  #we can also use 'gpt-3.5-turbo'
-        )
+            azure_deployment=os.getenv("OPENAI_MODEL_NAME"),
+            azure_endpoint=f"https://{os.getenv('AZURE_OPENAI_SERVICE_NAME')}.openai.azure.com/",
+            temperature=0.7,
+            api_version="2023-05-15")
 
         st.session_state['conversation'] = ConversationChain(
             llm=llm,
