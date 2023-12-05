@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_chat import message
-from langchain import OpenAI
+from langchain.llms import AzureOpenAI
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import (ConversationBufferMemory, 
                                                   ConversationSummaryMemory, 
@@ -10,11 +10,12 @@ from langchain.chains.conversation.memory import (ConversationBufferMemory,
 
 import os
 import openai
-from dotenv import load_dotenv, dotenv_values
+import dotenv
 
-load_dotenv()
-config = dotenv_values(".env")
-apikey = openai.api_key = config["OPENAI_API_KEY"]
+dotenv.load_dotenv()
+apikey = AzureOpenAI(
+    deployment_name=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
+)
 
 if 'conversation' not in st.session_state:
     st.session_state['conversation'] =None
@@ -40,7 +41,7 @@ def getresponse(userInput, api_key):
 
     if st.session_state['conversation'] is None:
 
-        llm = OpenAI(
+        llm = AzureOpenAI(
             temperature=0,
             openai_api_key=api_key,
             model_name='text-davinci-003'  #we can also use 'gpt-3.5-turbo'
